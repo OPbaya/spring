@@ -25,4 +25,17 @@ public class studentController {
     public List<student> getAllStudents() {
         return repository.findAll();
     }
+    
+    // DELETE STUDENT BY ID
+    @DeleteMapping("/{id}")
+    public String deleteStudent(@PathVariable Long id) {
+
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return "Student deleted successfully";
+        } else {
+            return "Student not found";
+        }
+    }
+
 }
