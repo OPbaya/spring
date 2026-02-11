@@ -18,10 +18,21 @@
         </tr>
 
         <tr th:each="s : ${students}">
-            <td th:text="${s.id}"></td>
-            <td th:text="${s.name}"></td>
+            <!-- <td th:text="${s.id}"></td> -->
             <td th:text="${s.rollNo}"></td>
+            <td th:text="${s.name}"></td>
             <td th:text="${s.marks}"></td>
+
+            <td>
+
+                <!-- example: students/delete/1 -->
+                <a th:href="@{/students/edit/{id}(id=${s.id})}">
+                    Edit
+                </a>
+                <form th:action="@{/students/delete/{id}(id=${s.id})}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
     </table>
 

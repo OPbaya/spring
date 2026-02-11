@@ -37,4 +37,19 @@ public class studentPageController {
         model.addAttribute("students", students);
         return "list-students";
     }
+    
+    // delete student by id
+    @PostMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable Long id) {
+        repository.deleteById(id);
+        return "redirect:/students/list";
+    }
+
+    // update student by id
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        student student = repository.findById(id).orElseThrow();
+        model.addAttribute("student", student);
+        return "edit-student";
+    }
 }
