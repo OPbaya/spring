@@ -17,6 +17,20 @@
                 <a href="/students/add" class="btn btn-success">+ Add Student</a>
             </div>
 
+            <form th:action="@{/students/search}" method="get" class="mb-3 d-flex">
+            
+                <input type="number" name="rollNo" placeholder="Enter Roll No" class="form-control me-2" required>
+            
+                <button type="submit" class="btn btn-primary">
+                    Search
+                </button>
+            
+                <a href="/students/list" class="btn btn-secondary ms-2">
+                    Reset
+                </a>
+            
+            </form>
+
             <table class="table table-bordered table-hover">
                 <thead class="table-dark">
                     <tr>

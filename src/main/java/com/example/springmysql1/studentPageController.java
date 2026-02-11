@@ -16,14 +16,14 @@ public class studentPageController {
         this.repository = repository;
     }
 
-    // Show form
+    // add student form
     @GetMapping("/add")
     public String showForm(Model model) {
         model.addAttribute("student", new student());
         return "add-student";
     }
 
-    // Save student
+    // Save student data
     @PostMapping("/save")
     public String saveStudent(@ModelAttribute student student) {
         repository.save(student);
@@ -52,4 +52,20 @@ public class studentPageController {
         model.addAttribute("student", student);
         return "edit-student";
     }
+    
+    // search student by roll no
+    @GetMapping("/search")
+    public String searchByRollNo(@RequestParam int rollNo, Model model) {
+
+        student student = repository.findByRollNo(rollNo).orElse(null);
+
+        if (student != null) {
+            model.addAttribute("students", List.of(student));
+        } else {
+            model.addAttribute("students", List.of());
+        }
+
+        return "list-students";
+    }
+
 }
